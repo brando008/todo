@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+/* List Section */
+#list,
+#listHeader {
+  display: flex;
+  border: 0.5px solid black;
+}
+
+#list {
+  flex-direction: column;
+  width: 500px;
+}
+
+/* Todo Section */
+#todo,
+#todoTopBox,
+#todo label,
+#todoUnderBox,
+#todoEdit {
+  display: flex;
+  border: 0.5px solid black;
+  width: 100%;
+}
+
+#todo {
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+}
+
+#todoTopBox {
+  flex-direction: column;
+}
+
+#todoUnderBox {
+  gap: 10px;
+}
+
+#todoEdit {
+  max-width: 100px;
+  margin-left: auto;
+}
+
+#editBtn,
+#enterBtn,
+#deleteBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+/* Add Button */
+#addTodo {
+  display: flex;
+  border: 0.5px solid black;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 50px;
+}
