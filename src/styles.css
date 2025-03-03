@@ -35,10 +35,13 @@
   flex-direction: column;
 }
 
-#todoUnderBox {
-  gap: 10px;
+#todoDescription {
+  display: block;
+  width: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
-
 #todoEdit {
   max-width: 100px;
   margin-left: auto;
