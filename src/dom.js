@@ -1,4 +1,4 @@
-function todoDom() {
+function Dom() {
   const createTodo = () => {
     const divTodo = document.createElement("div");
     const checkbox = document.createElement("input");
@@ -53,7 +53,58 @@ function todoDom() {
 
     return divTodo;
   };
-  return { createTodo };
+
+  const createList = () => {
+    const list = document.createElement("div");
+    const listHeader = document.createElement("div");
+    const listTitle = document.createElement("input");
+    const editBtn = document.createElement("button");
+
+    list.id = "list";
+
+    listHeader.id = "listHeader";
+
+    listTitle.type = "text";
+    listTitle.id = "listTitle";
+    listTitle.placeholder = "Enter Title";
+
+    editBtn.id = "editBtn";
+    editBtn.textContent = "Edit";
+
+    list.appendChild(listHeader);
+    listHeader.appendChild(listTitle);
+    listHeader.appendChild(editBtn);
+
+    //add 1 todo to the list
+    const newTodo = createTodo();
+    list.appendChild(newTodo);
+
+    const addTodoComponent = addTodo(list);
+    list.appendChild(addTodoComponent);
+
+    return list;
+  };
+
+  const addTodo = (todoContainer) => {
+    const addTodoDiv = document.createElement("div");
+    const todoBtn = document.createElement("button");
+
+    addTodoDiv.id = "addTodo";
+
+    todoBtn.id = "todoBtn";
+    todoBtn.textContent = "Add";
+
+    addTodoDiv.appendChild(todoBtn);
+
+    todoBtn.addEventListener("click", () => {
+      const newTodo = createTodo();
+      todoContainer.insertBefore(newTodo, addTodoDiv);
+    });
+
+    return addTodoDiv;
+  };
+
+  return { createTodo, createList };
 }
 
-export { todoDom };
+export { Dom };
