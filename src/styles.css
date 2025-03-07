@@ -3,53 +3,52 @@
 }
 
 /* List Section */
-#list,
-#listHeader {
+.list,
+.listHeader {
   display: flex;
   border: 0.5px solid black;
 }
 
-#list {
+.list {
   flex-direction: column;
   width: 500px;
 }
 
 /* Todo Section */
-#todo,
-#todoTopBox,
-#todo label,
-#todoUnderBox,
-#todoEdit {
+.todo,
+.todoTopBox,
+.todo label,
+.todoUnderBox,
+.todoEdit {
   display: flex;
   border: 0.5px solid black;
   width: 100%;
 }
 
-#todo {
+.todo {
   align-items: center;
   justify-content: center;
   max-width: 500px;
 }
 
-#todoTopBox {
+.todoTopBox {
   flex-direction: column;
 }
 
-#todoDescription {
+.todoDescription {
   display: block;
   width: 100%;
   word-wrap: break-word;
   white-space: normal;
   overflow-wrap: break-word;
 }
-#todoEdit {
+.todoEdit {
   max-width: 100px;
   margin-left: auto;
 }
 
-#editBtn,
-#enterBtn,
-#deleteBtn {
+.enterBtn,
+.deleteBtn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -57,7 +56,7 @@
 }
 
 /* Add Button */
-#addTodo {
+.addTodo {
   display: flex;
   border: 0.5px solid black;
   justify-content: center;

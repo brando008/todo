@@ -1,7 +1,7 @@
 import "./styles.css";
 import { list } from "./list.js";
-import { Dom } from "./dom.js";
+import { dom } from "./dom.js";
 
-const test = Dom();
+const test = dom();
 
 document.body.appendChild(test.createList());

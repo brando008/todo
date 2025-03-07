@@ -1,4 +1,4 @@
-function Dom() {
+function dom() {
   const createTodo = () => {
     const divTodo = document.createElement("div");
     const checkbox = document.createElement("input");
@@ -11,31 +11,31 @@ function Dom() {
     const enterBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
 
-    divTodo.id = "todo";
+    divTodo.classList.add("todo");
 
     checkbox.type = "checkbox";
-    checkbox.id = "taskComplete";
+    checkbox.classList.add("taskComplete");
 
     checkLabel.setAttribute("for", "taskComplete");
 
-    todoTopBox.id = "todoTopBox";
+    todoTopBox.classList.add("todoTopBox");
 
     todoTitle.type = "text";
-    todoTitle.id = "todoTitle";
+    todoTitle.classList.add("todoTitle");
     todoTitle.placeholder = "Enter Title";
 
-    todoUnderBox.id = "todoUnderBox";
+    todoUnderBox.classList.add("todoUnderBox");
 
     todoDescription.type = "text";
-    todoDescription.id = "todoDescription";
+    todoDescription.classList.add("todoDescription");
     todoDescription.placeholder = "Enter Description";
 
-    todoEdit.id = "todoEdit";
+    todoEdit.classList.add("todoEdit");
 
-    enterBtn.id = "enterBtn";
+    enterBtn.classList.add("enterBtn");
     enterBtn.textContent = "E";
 
-    deleteBtn.id = "deleteBtn";
+    deleteBtn.classList.add("deleteBtn");
     deleteBtn.textContent = "D";
 
     divTodo.appendChild(checkbox);
@@ -51,6 +51,30 @@ function Dom() {
     todoEdit.appendChild(enterBtn);
     todoEdit.appendChild(deleteBtn);
 
+    // enterBtn.addEventListener("click", () => {
+    //   todoTitle.setAttribute("readonly", true);
+    //   todoDescription.setAttribute("readonly", true);
+    // });
+
+    todoTitle.setAttribute("readonly", true);
+    todoDescription.setAttribute("readonly", true);
+
+    enterBtn.addEventListener("click", () => {
+      const isReadonly = todoTitle.hasAttribute("readonly");
+
+      if (isReadonly) {
+        todoTitle.removeAttribute("readonly");
+        todoDescription.removeAttribute("readonly");
+      } else {
+        todoTitle.setAttribute("readonly", true);
+        todoDescription.setAttribute("readonly", true);
+      }
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      divTodo.remove();
+    });
+
     return divTodo;
   };
 
@@ -58,22 +82,16 @@ function Dom() {
     const list = document.createElement("div");
     const listHeader = document.createElement("div");
     const listTitle = document.createElement("input");
-    const editBtn = document.createElement("button");
 
-    list.id = "list";
-
-    listHeader.id = "listHeader";
+    list.classList.add("list");
+    listHeader.classList.add("listHeader");
 
     listTitle.type = "text";
-    listTitle.id = "listTitle";
+    listTitle.classList.add("listTitle");
     listTitle.placeholder = "Enter Title";
-
-    editBtn.id = "editBtn";
-    editBtn.textContent = "Edit";
 
     list.appendChild(listHeader);
     listHeader.appendChild(listTitle);
-    listHeader.appendChild(editBtn);
 
     //add 1 todo to the list
     const newTodo = createTodo();
@@ -89,9 +107,9 @@ function Dom() {
     const addTodoDiv = document.createElement("div");
     const todoBtn = document.createElement("button");
 
-    addTodoDiv.id = "addTodo";
+    addTodoDiv.classList.add("addTodo");
 
-    todoBtn.id = "todoBtn";
+    todoBtn.classList.add("todoBtn");
     todoBtn.textContent = "Add";
 
     addTodoDiv.appendChild(todoBtn);
@@ -107,4 +125,4 @@ function Dom() {
   return { createTodo, createList };
 }
 
-export { Dom };
+export { dom };
