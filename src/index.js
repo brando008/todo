@@ -5,3 +5,4 @@ import { dom } from "./dom.js";
 const test = dom();
 
 document.body.appendChild(test.createList());
+document.body.appendChild(test.addList(document.body));

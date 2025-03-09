@@ -13,10 +13,11 @@ function dom() {
 
     divTodo.classList.add("todo");
 
+    const uniqueId = `taskComplete-${Date.now()}`;
     checkbox.type = "checkbox";
-    checkbox.classList.add("taskComplete");
+    checkbox.id = uniqueId;
 
-    checkLabel.setAttribute("for", "taskComplete");
+    checkLabel.setAttribute("for", uniqueId);
 
     todoTopBox.classList.add("todoTopBox");
 
@@ -51,23 +52,16 @@ function dom() {
     todoEdit.appendChild(enterBtn);
     todoEdit.appendChild(deleteBtn);
 
-    // enterBtn.addEventListener("click", () => {
-    //   todoTitle.setAttribute("readonly", true);
-    //   todoDescription.setAttribute("readonly", true);
-    // });
-
-    todoTitle.setAttribute("readonly", true);
-    todoDescription.setAttribute("readonly", true);
-
+    let toggle = false;
     enterBtn.addEventListener("click", () => {
-      const isReadonly = todoTitle.hasAttribute("readonly");
+      toggle = !toggle;
 
-      if (isReadonly) {
-        todoTitle.removeAttribute("readonly");
-        todoDescription.removeAttribute("readonly");
-      } else {
+      if (toggle) {
         todoTitle.setAttribute("readonly", true);
         todoDescription.setAttribute("readonly", true);
+      } else {
+        todoTitle.removeAttribute("readonly");
+        todoDescription.removeAttribute("readonly");
       }
     });
 
@@ -82,6 +76,8 @@ function dom() {
     const list = document.createElement("div");
     const listHeader = document.createElement("div");
     const listTitle = document.createElement("input");
+    const enterBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
 
     list.classList.add("list");
     listHeader.classList.add("listHeader");
@@ -93,12 +89,36 @@ function dom() {
     list.appendChild(listHeader);
     listHeader.appendChild(listTitle);
 
+    enterBtn.classList.add("enterBtn");
+    enterBtn.textContent = "E";
+
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.textContent = "D";
+
+    listHeader.appendChild(enterBtn);
+    listHeader.appendChild(deleteBtn);
+
     //add 1 todo to the list
     const newTodo = createTodo();
     list.appendChild(newTodo);
 
     const addTodoComponent = addTodo(list);
     list.appendChild(addTodoComponent);
+
+    let toggle = false;
+    enterBtn.addEventListener("click", () => {
+      toggle = !toggle;
+
+      if (toggle) {
+        listTitle.setAttribute("readonly", true);
+      } else {
+        listTitle.removeAttribute("readonly");
+      }
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      list.remove();
+    });
 
     return list;
   };
@@ -122,7 +142,26 @@ function dom() {
     return addTodoDiv;
   };
 
-  return { createTodo, createList };
+  const addList = (listContainer) => {
+    const addListDiv = document.createElement("div");
+    const listBtn = document.createElement("button");
+
+    addListDiv.classList.add("addList");
+
+    listBtn.classList.add("listBtn");
+    listBtn.textContent = "Add";
+
+    addListDiv.appendChild(listBtn);
+
+    listBtn.addEventListener("click", () => {
+      const newList = createList();
+      listContainer.insertBefore(newList, addListDiv);
+    });
+
+    return addListDiv;
+  };
+
+  return { createTodo, createList, addList };
 }
 
 export { dom };

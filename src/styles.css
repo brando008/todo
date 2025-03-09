@@ -56,7 +56,8 @@
 }
 
 /* Add Button */
-.addTodo {
+.addTodo,
+.addList {
   display: flex;
   border: 0.5px solid black;
   justify-content: center;
